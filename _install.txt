@@ -1,0 +1,10 @@
+For ExtremeValueDistributions.jl: 
+
+    Pkg.add("RDatasets")
+    
+    Pkg.clone("https://github.com/sammorris81/MetropolisUpdaters.jl.git")
+    Pkg.clone("https://github.com/sammorris81/DataTransformations.jl.git")
+    Pkg.clone("https://github.com/sammorris81/ExtremeValueDistributions.jl.git")
+    Pkg.add("Optim") # Required by ExtremeValueDistributions for fitting distributions. 
+    
+    Pkg.checkout("ExtremeValueDistributions", "develop")
