@@ -49,7 +49,7 @@ facts("Reservoir data structures: reservoir") do
     @fact hydropowerUnits(r) --> getHydropowerUnits(r)
     @fact outputs(r) --> getOutputs(r)
     @fact outputsId(r) --> getOutputIds(r)
-    @fact bathymetry(r) --> getbathymetry(r)
+    @fact bathymetry(r) --> getBathymetry(r)
 
     # Getter with an ID: return a Nullable (the other option: throw an error when there is nothing; hard to
     # ensure as a generic test).
@@ -139,7 +139,7 @@ facts("Reservoir data structures: reservoir") do
     @fact getPurposeIds(r) --> []
     @fact getOutputs(r) --> []
     @fact getOutputIds(r) --> []
-    @fact getbathymetry(r) --> isempty
+    @fact getBathymetry(r) --> isempty
 
     reservoirTestShortVersions(r)
     reservoirTestConsistency(r)
@@ -220,7 +220,7 @@ facts("Reservoir data structures: reservoir") do
     @fact getPurposeIds(r2) --> []
     @fact getOutputs(r2) --> []
     @fact getOutputIds(r2) --> []
-    @fact getbathymetry(r2) --> isempty
+    @fact getBathymetry(r2) --> isempty
 
     reservoirTestShortVersions(r2)
     reservoirTestConsistency(r2)
@@ -261,7 +261,7 @@ facts("Reservoir data structures: reservoir") do
     @fact getPurposeIds(r2) --> []
     @fact getOutputs(r2) --> []
     @fact getOutputIds(r2) --> []
-    @fact getbathymetry(r2) --> isempty
+    @fact getBathymetry(r2) --> isempty
 
     reservoirTestShortVersions(r2)
     reservoirTestConsistency(r2)
@@ -299,7 +299,7 @@ facts("Reservoir data structures: reservoir") do
     @fact getPurposeIds(r2) --> []
     @fact getOutputs(r2) --> []
     @fact getOutputIds(r2) --> []
-    @fact getbathymetry(r2) --> isempty
+    @fact getBathymetry(r2) --> isempty
 
     reservoirTestShortVersions(r2)
     reservoirTestConsistency(r2)
@@ -333,7 +333,7 @@ facts("Reservoir data structures: reservoir") do
     @fact getPurposeIds(r2) --> []
     @fact getOutputs(r2) --> []
     @fact getOutputIds(r2) --> []
-    @fact getbathymetry(r2) --> isempty
+    @fact getBathymetry(r2) --> isempty
 
     reservoirTestShortVersions(r2)
     reservoirTestConsistency(r2)
@@ -369,7 +369,7 @@ facts("Reservoir data structures: reservoir") do
     @fact getPurposeIds(r) --> [getPurposeId(hp)]
     @fact getOutputs(r) --> [HydropowerDamOutput(hp)]
     @fact getOutputIds(r) --> [getDamOutputId(hp)]
-    @fact getbathymetry(r) --> isempty
+    @fact getBathymetry(r) --> isempty
 
     reservoirTestShortVersions(r)
     reservoirTestConsistency(r)
@@ -440,7 +440,7 @@ facts("Reservoir data structures: reservoir") do
     @fact getPurposeIds(r) --> [:drinkingWater, :environmentalFlow]
     @fact getOutputs(r) --> os
     @fact getOutputIds(r) --> [:bottomOutlets, :spillway]
-    @fact getbathymetry(r) --> isempty
+    @fact getBathymetry(r) --> isempty
 
     reservoirTestShortVersions(r)
     reservoirTestConsistency(r)

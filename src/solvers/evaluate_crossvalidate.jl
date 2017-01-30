@@ -36,7 +36,7 @@ end
 Estimate the feasibility probabilities of the given solution with cross-validation. This function handles
 the whole process, from a separation in a learning set (LS) and a test set (TS), to computing a solution
 with the learning set, to validate it against the test set. The division into LS and TS is performed randomly
-for each fold using random subsampling. 
+for each fold using random subsampling.
 
 Inputs:
 

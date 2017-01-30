@@ -1,9 +1,10 @@
 High priority:
+    REFACTOR [EVERYWHERE]: reduce the number of accessors to eliminate redundancy. Avoid mixing too many conventions (camelCase, snake_case, probably others). 
     REFACTOR [REPORT]: rework evaluation data structures (evaluations and globalEvaluations) to allow easy sorting on the evaluator algorithm (and no ugly loop over loop with test on the evaluator to check that it is output at the right time). I.e. have them being Dict(evaluator -> Dict(parameters -> evaluation)).
     REFACTOR [REPORT]: enable configuration of output folders, especially for plots. For example, give one "main" output folder, allow to create a subfolder for the current report() call (include many parameters in the folder names, such as time steps?). Allow (or force?) creating subfolders for the different kinds of plots?                Try to be generic: specify the directory structure by an abstract data structure, with a specific interface to allow the user to implement their own folder structure (getFolder(:plots), getFolder(:plots, :confidenceIntervals), etc.).            Allow to add automatically the date within the outermost folder.                   Or rather use hash maps instead of full-blown data structures? (Or a main data structure containing mainly a hashmap, so that dispatch is still possible, without having to specify many parameters, i.e. the parameters variable and the folder chooser?)
     REFACTOR [REPORT]: should be runnable in multiple passes: one to compute things, serialise the results; one that prints a textual report on the console (and in a file); one that prepares the figures. All three could be run in one shot, without reading the results from disk, but the postprocessing parts should also work when reading the data from a serialised save.
-    DEBUG [SOLVERS]: Can work with arbitrary periods (e.g., days, months, seasons, while it now works only for weeks). 
-Shorm:
+    DEBUG [SOLVERS]: Can work with arbitrary periods (e.g., days, months, seasons, while it now works only for weeks).
+Short term:
     REFACTOR: Migration to Julia 0.5.
     DOC [SOLVERS]: describe generic options for the solvers once and for all (doc).
     DESIGN [SOLVER_DS]: complete the null pattern for solver data structures (those zero objects should behave as real objects, but empty). I.e. follow documentation to provide basic implementation of each object, so that ony those fields are present (and contain nothing).
@@ -15,7 +16,7 @@ Shorm:
     REFACTOR [SOLVER_EVALUATION]: Get rid of minLevel/maxLevel arguments and replace them by purposes? Would remove quite a few quirks (reduce the number of arguments, remove quirks in purposeshortage). Makes sense: a constraint the reservoir must meet.                   Requirement, even if the purpose way is not chosen: helpers to implement the rule curves.
     REFACTOR [SOLVER_DATASTRUCTURES]: Could get rid of the feasibility field in ReservoirSolution? Some evaluations do not need it (mc_feasibility and purposeshortage). Or just say it should stay to true in those cases?
     REFACTOR [UNITS HANDLING]: Switch to something more developed than SIUnits, like http://ajkeller34.github.io/Unitful.jl/. Requires migrating to Julia 0.5.                        The new units package should allow to refactor some timing issues (i.e. converting Hour(1) to either "1 hour" or "1 h", or even to "hour" and "h", which are often used to generate names).
-Medium-term:
+Medium term:
     DEBUG [STATS]: Bring Adam2015 back to working state.
     FUNCTIONALITY [SOLVERS]: Outputting model files should only take a prefix as argument (force it to be a folder?): the solver decides the filename and the extension. Allows a single solver to output multiple models! Required for evaluate_purposeshortage             Nice functions: 1/ take a solver ID (as Symbol) and an optional supplement to create a file name (extension as positional parameter); 2/ takes a model, a solver ID, an optional supplement, but no extension, and makes the LP file on its own.
     FUNCTIONALITY [PURPOSES]: Purposes whose needs depend on time and time step. (E.g., discharge required for fish spawn only at some periods of the year.)
@@ -31,7 +32,7 @@ Medium-term:
     FUNCTIONALITY [MIXING]: Allow mixing with seasons (instead of just years)
     REFACTOR [SOLVER_SAFE]: work by configurable blocks of scenarios (between one block for all scenarios, as is done currently, to one scenario per block); may then add parallelism in the code.
     FUNCTIONALITY [PLOTS]: Safe solver: evolution of the objective function when considering more and more scenarios. A bit like https://github.com/JuliaSmoothOptimizers/BenchmarkProfiles.jl? (Needs the previous.)
-Long-term:
+Long term:
     FUNCTIONALITY [PLOTTING]: develop a Web interface based on Escher.jl https://github.com/shashi/Escher.jl (or R's Shiny, or something else).
     DESIGN [EVERYWHERE]: think about units everywhere.
     MODELLING [SOLVER_HELPERS]: uncertainty for the purpose needs?

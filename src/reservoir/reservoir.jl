@@ -129,7 +129,7 @@ getPenstockHydropower(r::Reservoir) = sum([hp.max_discharge for hp in getHydropo
 
 getPurposes(r::Reservoir) = r.purposes
 getOutputs(r::Reservoir) = r.outputs
-getbathymetry(r::Reservoir) = r.bathymetry
+getBathymetry(r::Reservoir) = r.bathymetry
 
 function _check_purpose_subtype(purposeType::DataType)
   if ! (purposeType <: Purpose)
@@ -192,7 +192,7 @@ hydropowerUnits(r::Reservoir) = getHydropowerUnits(r)
 outputs(r::Reservoir) = getOutputs(r)
 outputsId(r::Reservoir) = getOutputIds(r)
 output(r::Reservoir, s::Symbol; kwargs...) = getOutput(r, s; kwargs...)
-bathymetry(r::Reservoir) = getbathymetry(r)
+bathymetry(r::Reservoir) = getBathymetry(r)
 purpose(r::Reservoir, s::Symbol; kwargs...) = getPurpose(r, s; kwargs...)
 purpose(r::Reservoir, purposeType::DataType) = getPurpose(r, purposeType)
 
