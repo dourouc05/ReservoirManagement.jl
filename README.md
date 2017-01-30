@@ -21,6 +21,13 @@ Pkg.checkout("ExtremeValueDistributions", "develop")
 
 ## Usage
 
+```Julia
+using ReservoirManagement
+using FactCheck
+using SIUnits
+using SIUnits.ShortUnits
+```
+
 The first step is to define the topology of the reservoir: the tributaries. This package defines two kinds of rivers: those that directly flow into the reservoir (the most common case), represented by `NaturalRiver`, and diverted rivers (whose contribution can be decided up to some level), `DivertedRiver`. 
 
 The main information stored for each river is a series of inflow scenarios, each scenario being represented by an array of time series (whose type is [`TimeArray`](https://github.com/JuliaStats/TimeSeries.jl/)). 
