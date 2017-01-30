@@ -12,12 +12,12 @@ facts("Utilities") do
     @fact q::Discharge --> q
     @fact p::Power --> p
 
-    @fact _from_unitful(h)::Float64 --> _from_unitful(h)
-    @fact _from_unitful(v)::Float64 --> _from_unitful(v)
-    @fact _from_unitful(q)::Float64 --> _from_unitful(q)
-    @fact _from_unitful(p)::Float64 --> _from_unitful(p)
-    @fact _from_unitful(nb)::Float64 --> _from_unitful(nb)
-    @fact _from_unitful(vv)::Tuple{Float64, Float64} --> _from_unitful(vv)
+    @fact ReservoirManagement._from_unitful(h)::Float64 --> ReservoirManagement._from_unitful(h)
+    @fact ReservoirManagement._from_unitful(v)::Float64 --> ReservoirManagement._from_unitful(v)
+    @fact ReservoirManagement._from_unitful(q)::Float64 --> ReservoirManagement._from_unitful(q)
+    @fact ReservoirManagement._from_unitful(p)::Float64 --> ReservoirManagement._from_unitful(p)
+    @fact ReservoirManagement._from_unitful(nb)::Float64 --> ReservoirManagement._from_unitful(nb)
+    @fact ReservoirManagement._from_unitful(vv)::Tuple{Float64, Float64} --> ReservoirManagement._from_unitful(vv)
   end
 
   context("Season separation: SeasonsSeparator") do

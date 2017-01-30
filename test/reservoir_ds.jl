@@ -166,8 +166,8 @@ facts("Reservoir data structures: basics") do
     @fact getId(hp) --> not(getPurposeId(hp))
     @fact getId(hp) --> not(getDamOutputId(hp))
     @fact getPurposeId(hp) --> not(getDamOutputId(hp))
-    @fact getMaximumDischarge(hp) --> _from_unitful(a_discharge)
-    @fact getMaximumPower(hp) --> _from_unitful(b_power)
+    @fact getMaximumDischarge(hp) --> ReservoirManagement.ReservoirManagement._from_unitful(a_discharge)
+    @fact getMaximumPower(hp) --> ReservoirManagement._from_unitful(b_power)
     @fact getEfficiency(hp) --> 1./c
 
     @fact id(hp) --> getId(hp)
@@ -281,7 +281,7 @@ facts("Reservoir data structures: basics") do
   context("DamOutput: ConstantDamOutput") do
     dout1 = ConstantDamOutput(a_discharge)
     @fact hasCondition(dout1) --> false
-    @fact getDischarge(dout1) --> _from_unitful(a_discharge)
+    @fact getDischarge(dout1) --> ReservoirManagement._from_unitful(a_discharge)
     @fact isConstant(dout1) --> true
     @fact isHydropower(dout1) --> false
     @fact hasConveyanceFactor(dout1) --> false
@@ -291,7 +291,7 @@ facts("Reservoir data structures: basics") do
     dout2 = ConstantDamOutput(a_discharge, cond)
     @fact hasCondition(dout2) --> true
     @fact condition(dout2) --> exactly(cond)
-    @fact getDischarge(dout2) --> _from_unitful(a_discharge)
+    @fact getDischarge(dout2) --> ReservoirManagement._from_unitful(a_discharge)
     @fact isConstant(dout2) --> true
     @fact isHydropower(dout2) --> false
     @fact hasConveyanceFactor(dout2) --> false
@@ -302,7 +302,7 @@ facts("Reservoir data structures: basics") do
     @fact getId(dout3) --> an_id
     @fact hasCondition(dout3) --> true
     @fact condition(dout3) --> exactly(cond)
-    @fact getDischarge(dout3) --> _from_unitful(a_discharge)
+    @fact getDischarge(dout3) --> ReservoirManagement._from_unitful(a_discharge)
     @fact isConstant(dout3) --> true
     @fact isHydropower(dout3) --> false
     @fact hasConveyanceFactor(dout3) --> false
@@ -324,7 +324,7 @@ facts("Reservoir data structures: basics") do
     dout2 = HydropowerDamOutput(hp, cond)
     @fact hasCondition(dout2) --> true
     @fact condition(dout2) --> exactly(cond)
-    @fact getDischarge(dout2) --> _from_unitful(a_discharge)
+    @fact getDischarge(dout2) --> ReservoirManagement._from_unitful(a_discharge)
     @fact isConstant(dout2) --> false
     @fact isHydropower(dout2) --> true
     @fact hasConveyanceFactor(dout2) --> false

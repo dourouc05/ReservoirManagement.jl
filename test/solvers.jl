@@ -62,7 +62,7 @@ facts("Solvers") do
     # Smallest optimisation model so that this works.
     m = Model(solver=silentSolver())
     @variable(m, output[1:length] >= 0)
-    @variable(m, _from_unitful(r_min_capacity) <= volume[1:length] <= _from_unitful(r_max_capacity))
+    @variable(m, ReservoirManagement._from_unitful(r_min_capacity) <= volume[1:length] <= ReservoirManagement._from_unitful(r_max_capacity))
     @objective(m, Max, sum(output))
     for t in 1:length
       hlp_JuMP_outputs_constraint(m, output[t], volume[t], r, nonlinear_mode=:None)
@@ -99,7 +99,7 @@ facts("Solvers") do
     # Smallest optimisation model so that this works: completely disable the spillway by working on the maximum volume.
     m_1 = Model(solver=silentSolver())
     @variable(m_1, output_1[1:length] >= 0)
-    @variable(m_1, _from_unitful(r_min_capacity) <= volume_1[1:length] <= r_cap_spillway - .1) # Need a small epsilon to be sure to be below the spillway!
+    @variable(m_1, ReservoirManagement._from_unitful(r_min_capacity) <= volume_1[1:length] <= r_cap_spillway - .1) # Need a small epsilon to be sure to be below the spillway!
     @objective(m_1, Max, sum(output_1))
     for t in 1:length
       hlp_JuMP_outputs_constraint(m_1, output_1[t], volume_1[t], r, nonlinear_mode=:None)
@@ -114,7 +114,7 @@ facts("Solvers") do
     ## Force enable the spillway.
     m_2 = Model(solver=silentSolver())
     @variable(m_2, output_2[1:length] >= 0)
-    @variable(m_2, r_cap_spillway <= volume_2[1:length] <= _from_unitful(r_max_capacity)) # With the objective function, the spillway is always active.
+    @variable(m_2, r_cap_spillway <= volume_2[1:length] <= ReservoirManagement._from_unitful(r_max_capacity)) # With the objective function, the spillway is always active.
     @objective(m_2, Max, sum(output_2))
     for t in 1:length
       hlp_JuMP_outputs_constraint(m_2, output_2[t], volume_2[t], r, nonlinear_mode=:None)
@@ -129,7 +129,7 @@ facts("Solvers") do
     ## Spillway free (but release maximised).
     m_3 = Model(solver=silentSolver())
     @variable(m_3, output_3[1:length] >= 0)
-    @variable(m_3, _from_unitful(r_min_capacity) <= volume_3[1:length] <= _from_unitful(r_max_capacity))
+    @variable(m_3, ReservoirManagement._from_unitful(r_min_capacity) <= volume_3[1:length] <= ReservoirManagement._from_unitful(r_max_capacity))
     @objective(m_3, Max, sum(output_3))
     for t in 1:length
       hlp_JuMP_outputs_constraint(m_3, output_3[t], volume_3[t], r, nonlinear_mode=:None)

@@ -23,9 +23,9 @@ facts("Reservoir data structures: rivers") do
     @fact scenario(r, 1) --> getScenario(r, 1)
     @fact scenario(r, 1, 1) --> getScenario(r, 1, 1)
     @fact period(r) --> getPeriod(r)
-    @fact countScenarios(r) --> countScenariosWithConsistency(r)
-    @fact countTimeSteps(r) --> countTimeStepsWithConsistency(r)
-    @fact getPeriod(r) --> getPeriodWithConsistency(r)
+    @fact countScenarios(r) --> ReservoirManagement.countScenariosWithConsistency(r)
+    @fact countTimeSteps(r) --> ReservoirManagement.countTimeStepsWithConsistency(r)
+    @fact getPeriod(r) --> ReservoirManagement.getPeriodWithConsistency(r)
     @fact typeof(getPeriod(r)) <: Base.Dates.Period --> true
   end
 
@@ -77,9 +77,9 @@ facts("Reservoir data structures: rivers") do
     @fact scenario(r, 1) --> getScenario(r, 1)
     @fact scenario(r, 1, 1) --> getScenario(r, 1, 1)
     @fact period(r) --> getPeriod(r)
-    @fact countScenarios(r) --> countScenariosWithConsistency(r)
-    @fact countTimeSteps(r) --> countTimeStepsWithConsistency(r)
-    @fact getPeriod(r) --> getPeriodWithConsistency(r)
+    @fact countScenarios(r) --> ReservoirManagement.countScenariosWithConsistency(r)
+    @fact countTimeSteps(r) --> ReservoirManagement.countTimeStepsWithConsistency(r)
+    @fact getPeriod(r) --> ReservoirManagement.getPeriodWithConsistency(r)
     @fact typeof(getPeriod(r)) <: Base.Dates.Period --> true
     @fact environmentalFlow(r) --> getEnvironmentalFlow(r)
     @fact maxFlow(r) --> getMaximumFlow(r)
@@ -98,10 +98,10 @@ facts("Reservoir data structures: rivers") do
     @fact getPeriod(r) --> Week(1)
     @fact getScenario(r, 1) --> values(sc1[1])
     @fact getScenario(r, 1, 1) --> values(sc1[1])[1]
-    @fact getEnvironmentalFlow(r) --> _from_unitful(a_discharge)
-    @fact getMaximumFlow(r) --> _from_unitful(b_discharge)
-    @fact getEnvironmentalFlow(r, Week(1)) --> _from_unitful(a_discharge) * 604800. # 10^6 m^3/s -> 10^6 m^3/week
-    @fact getMaximumFlow(r, Week(1)) --> _from_unitful(b_discharge) * 604800. # 10^6 m^3/s -> 10^6 m^3/week
+    @fact getEnvironmentalFlow(r) --> ReservoirManagement._from_unitful(a_discharge)
+    @fact getMaximumFlow(r) --> ReservoirManagement._from_unitful(b_discharge)
+    @fact getEnvironmentalFlow(r, Week(1)) --> ReservoirManagement._from_unitful(a_discharge) * 604800. # 10^6 m^3/s -> 10^6 m^3/week
+    @fact getMaximumFlow(r, Week(1)) --> ReservoirManagement._from_unitful(b_discharge) * 604800. # 10^6 m^3/s -> 10^6 m^3/week
     @fact maxAllowableFlow(r, 1, 1) --> roughly(maximum([0., minimum([getMaximumFlow(r, Week(1)), getScenario(r, 1, 1) - getEnvironmentalFlow(r, Week(1))])]))
     divertedRiverTestShortVersions(r)
 
@@ -114,8 +114,8 @@ facts("Reservoir data structures: rivers") do
     @fact getPeriod(r2) --> Week(1)
     @fact getScenario(r2, 1) --> values(sc1[1])
     @fact getScenario(r2, 1, 1) --> values(sc1[1])[1]
-    @fact getEnvironmentalFlow(r2) --> _from_unitful(a_discharge)
-    @fact getMaximumFlow(r2) --> _from_unitful(b_discharge)
+    @fact getEnvironmentalFlow(r2) --> ReservoirManagement._from_unitful(a_discharge)
+    @fact getMaximumFlow(r2) --> ReservoirManagement._from_unitful(b_discharge)
     @fact maxAllowableFlow(r2, 1, 1) --> roughly(maximum([0., minimum([getMaximumFlow(r2, Week(1)), getScenario(r2, 1, 1) - getEnvironmentalFlow(r2, Week(1))])]))
     divertedRiverTestShortVersions(r2)
 
@@ -128,8 +128,8 @@ facts("Reservoir data structures: rivers") do
     @fact getPeriod(r3) --> Week(1)
     @fact getScenario(r3, 1) --> values(sc2[1])
     @fact getScenario(r3, 1, 1) --> values(sc2[1])[1]
-    @fact getEnvironmentalFlow(r3) --> _from_unitful(a_discharge)
-    @fact getMaximumFlow(r3) --> _from_unitful(b_discharge)
+    @fact getEnvironmentalFlow(r3) --> ReservoirManagement._from_unitful(a_discharge)
+    @fact getMaximumFlow(r3) --> ReservoirManagement._from_unitful(b_discharge)
     @fact maxAllowableFlow(r3, 1, 1) --> roughly(maximum([0., minimum([getMaximumFlow(r3, Week(1)), getScenario(r3, 1, 1) - getEnvironmentalFlow(r3, Week(1))])]))
     divertedRiverTestShortVersions(r3)
 
@@ -142,8 +142,8 @@ facts("Reservoir data structures: rivers") do
     @fact getPeriod(r4) --> Week(1)
     @fact getScenario(r4, 1) --> values(sc2[1])
     @fact getScenario(r4, 1, 1) --> values(sc2[1])[1]
-    @fact getEnvironmentalFlow(r4) --> _from_unitful(b_discharge)
-    @fact getMaximumFlow(r4) --> _from_unitful(b_discharge)
+    @fact getEnvironmentalFlow(r4) --> ReservoirManagement._from_unitful(b_discharge)
+    @fact getMaximumFlow(r4) --> ReservoirManagement._from_unitful(b_discharge)
     @fact maxAllowableFlow(r4, 1, 1) --> roughly(maximum([0., minimum([getMaximumFlow(r4, Week(1)), getScenario(r4, 1, 1) - getEnvironmentalFlow(r4, Week(1))])]))
     divertedRiverTestShortVersions(r4)
 
@@ -156,8 +156,8 @@ facts("Reservoir data structures: rivers") do
     @fact getPeriod(r5) --> Week(1)
     @fact getScenario(r5, 1) --> values(sc2[1])
     @fact getScenario(r5, 1, 1) --> values(sc2[1])[1]
-    @fact getEnvironmentalFlow(r5) --> _from_unitful(b_discharge)
-    @fact getMaximumFlow(r5) --> _from_unitful(a_discharge)
+    @fact getEnvironmentalFlow(r5) --> ReservoirManagement._from_unitful(b_discharge)
+    @fact getMaximumFlow(r5) --> ReservoirManagement._from_unitful(a_discharge)
     @fact maxAllowableFlow(r5, 1, 1) --> roughly(maximum([0., minimum([getMaximumFlow(r5, Week(1)), getScenario(r5, 1, 1) - getEnvironmentalFlow(r5, Week(1))])]))
     divertedRiverTestShortVersions(r5)
 

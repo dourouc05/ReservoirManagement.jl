@@ -44,6 +44,7 @@ module ReservoirManagement
   # Export things that should be exported.
   export
     ## utils.jl
+    Height, Volume, Discharge, Power,
     SeasonsSeparator, HydrologicalWesternEurope, seasons, isSeasonKnown, ensureSeasonKnown, begins, ends, length, seasonBoundariesGuarantee, separate,
     NonLeapYearIterator,
     ArrayAsIterableReservoirScenarios, eachscenario,
@@ -73,7 +74,7 @@ module ReservoirManagement
     DeterministicPurposes,
 
     # output.jl
-    DamOutput, getId, getCondition, id, condition, isConditional,
+    DamOutput, getId, getCondition, id, condition, hasCondition, isConditional, 
     ConveyanceDamOutput, hasConveyanceFactor, getConveyanceFactor, conveyance,
     NoCondition, isempty,
     ConstantDamOutput, getDischarge, isConstant, discharge,
@@ -85,7 +86,7 @@ module ReservoirManagement
     # river.jl
     River, getName, getScenarios, getScenarioTS, getScenario,
     countScenarios, countTimeSteps, getPeriod, getTimePoints,
-    name, scenarios, scenario, period
+    name, scenarios, scenario, period,
 
     # river_natural.jl
     NaturalRiver,
@@ -144,7 +145,7 @@ module ReservoirManagement
     scenarioDuplication, scenarioConcatenation, scenarioMerging, scenarioMixing,
     addScenarioGenerationAlgorithm!,
     scenarioGeneration, scenarioDuplication, scenarioConcatenation, scenarioConcatenation, scenarioMerging, scenarioMixing,
-    scenarioShift
+    scenarioShift,
 
     ## solvers/
     # ds.jl
@@ -200,7 +201,7 @@ module ReservoirManagement
 
     # rulecurve_min_safe.jl
     SafetyMinimumRuleCurveOptions, SafetyMinimumRuleCurveSolution, SafetyMinimumRuleCurveSolverStatistics,
-    safeMinimumRuleCurve, 
+    safeMinimumRuleCurve,
 
     ## plots_
     # dataframes.jl

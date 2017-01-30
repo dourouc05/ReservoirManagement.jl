@@ -154,7 +154,7 @@ getMinimumLevel(c::MinimumReservoirLevelCondition) = c.min
 getMinimumLevel(c::DamOutputCondition) = error("Minimum reservoir level has no meaning for the condition.")
 minLevel(c::DamOutputCondition) = getMinimumLevel(c)
 
-# Equivalent functions for volumes: see output_fwd.jl (they need the declarations of other stuff). 
+# Equivalent functions for volumes: see output_fwd.jl (they need the declarations of other stuff).
 
 
 

@@ -61,9 +61,9 @@ facts("Reservoir data structures: reservoir") do
   end
 
   function reservoirTestConsistency(r::Reservoir)
-    @fact countScenariosWithConsistency(r) --> countScenarios(r)
-    @fact countTimeStepsWithConsistency(r) --> countTimeSteps(r)
-    @fact getPeriodWithConsistency(r) --> getPeriod(r)
+    @fact ReservoirManagement.countScenariosWithConsistency(r) --> countScenarios(r)
+    @fact ReservoirManagement.countTimeStepsWithConsistency(r) --> countTimeSteps(r)
+    @fact ReservoirManagement.getPeriodWithConsistency(r) --> getPeriod(r)
   end
 
   function reservoirTestRivers(r::Reservoir, all_rivers, all_natural_rivers, all_diverted_rivers,
@@ -131,8 +131,8 @@ facts("Reservoir data structures: reservoir") do
 
     # Basic getters.
     @fact getName(r) --> r_name
-    @fact getMinimumCapacity(r) --> _from_unitful(r_min_capacity)
-    @fact getMaximumCapacity(r) --> _from_unitful(r_max_capacity)
+    @fact getMinimumCapacity(r) --> ReservoirManagement._from_unitful(r_min_capacity)
+    @fact getMaximumCapacity(r) --> ReservoirManagement._from_unitful(r_max_capacity)
     @fact getPenstockHydropower(r) --> 0.
     @fact getHydropowerUnits(r) --> []
     @fact getPurposes(r) --> []
@@ -212,8 +212,8 @@ facts("Reservoir data structures: reservoir") do
     r2 = removeScenarios(r, IntSet(1))
 
     @fact getName(r2) --> r_name
-    @fact getMinimumCapacity(r2) --> _from_unitful(r_min_capacity)
-    @fact getMaximumCapacity(r2) --> _from_unitful(r_max_capacity)
+    @fact getMinimumCapacity(r2) --> ReservoirManagement._from_unitful(r_min_capacity)
+    @fact getMaximumCapacity(r2) --> ReservoirManagement._from_unitful(r_max_capacity)
     @fact getPenstockHydropower(r2) --> 0.
     @fact getHydropowerUnits(r2) --> []
     @fact getPurposes(r2) --> []
@@ -253,8 +253,8 @@ facts("Reservoir data structures: reservoir") do
     r2 = removeScenarios(r, IntSet([1, 3, 5]))
 
     @fact getName(r2) --> r_name
-    @fact getMinimumCapacity(r2) --> _from_unitful(r_min_capacity)
-    @fact getMaximumCapacity(r2) --> _from_unitful(r_max_capacity)
+    @fact getMinimumCapacity(r2) --> ReservoirManagement._from_unitful(r_min_capacity)
+    @fact getMaximumCapacity(r2) --> ReservoirManagement._from_unitful(r_max_capacity)
     @fact getPenstockHydropower(r2) --> 0.
     @fact getHydropowerUnits(r2) --> []
     @fact getPurposes(r2) --> []
@@ -291,8 +291,8 @@ facts("Reservoir data structures: reservoir") do
     r2 = keepTimeSteps(r, chosen_t_step)
 
     @fact getName(r2) --> r_name
-    @fact getMinimumCapacity(r2) --> _from_unitful(r_min_capacity)
-    @fact getMaximumCapacity(r2) --> _from_unitful(r_max_capacity)
+    @fact getMinimumCapacity(r2) --> ReservoirManagement._from_unitful(r_min_capacity)
+    @fact getMaximumCapacity(r2) --> ReservoirManagement._from_unitful(r_max_capacity)
     @fact getPenstockHydropower(r2) --> 0.
     @fact getHydropowerUnits(r2) --> []
     @fact getPurposes(r2) --> []
@@ -325,8 +325,8 @@ facts("Reservoir data structures: reservoir") do
     r2 = keepTimeSteps(r, first_chosen_t_step:last_chosen_t_step)
 
     @fact getName(r2) --> r_name
-    @fact getMinimumCapacity(r2) --> _from_unitful(r_min_capacity)
-    @fact getMaximumCapacity(r2) --> _from_unitful(r_max_capacity)
+    @fact getMinimumCapacity(r2) --> ReservoirManagement._from_unitful(r_min_capacity)
+    @fact getMaximumCapacity(r2) --> ReservoirManagement._from_unitful(r_max_capacity)
     @fact getPenstockHydropower(r2) --> 0.
     @fact getHydropowerUnits(r2) --> []
     @fact getPurposes(r2) --> []
@@ -361,9 +361,9 @@ facts("Reservoir data structures: reservoir") do
 
     # Basic getters.
     @fact getName(r) --> r_name
-    @fact getMinimumCapacity(r) --> _from_unitful(r_min_capacity)
-    @fact getMaximumCapacity(r) --> _from_unitful(r_max_capacity)
-    @fact getPenstockHydropower(r) --> _from_unitful(a_discharge)
+    @fact getMinimumCapacity(r) --> ReservoirManagement._from_unitful(r_min_capacity)
+    @fact getMaximumCapacity(r) --> ReservoirManagement._from_unitful(r_max_capacity)
+    @fact getPenstockHydropower(r) --> ReservoirManagement._from_unitful(a_discharge)
     @fact getHydropowerUnits(r) --> [hp]
     @fact getPurposes(r) --> [DeterministicHydropower(hp)]
     @fact getPurposeIds(r) --> [getPurposeId(hp)]
@@ -432,8 +432,8 @@ facts("Reservoir data structures: reservoir") do
 
     # Basic getters.
     @fact getName(r) --> r_name
-    @fact getMinimumCapacity(r) --> _from_unitful(r_min_capacity)
-    @fact getMaximumCapacity(r) --> _from_unitful(r_max_capacity)
+    @fact getMinimumCapacity(r) --> ReservoirManagement._from_unitful(r_min_capacity)
+    @fact getMaximumCapacity(r) --> ReservoirManagement._from_unitful(r_max_capacity)
     @fact getPenstockHydropower(r) --> 0.
     @fact getHydropowerUnits(r) --> isempty
     @fact getPurposes(r) --> ps

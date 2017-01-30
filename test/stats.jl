@@ -37,35 +37,35 @@ facts("Statistical models") do
   const b_power = b * 1.W
   const c = 3.
 
-  # context("Utilities: split an array into random subsets") do
-  #   @fact splitIntoSets_sizes(8, [1.]) --> [8]
-  #   @fact splitIntoSets_sizes(8, [.8, .2]) --> [6, 2]
-  #   @fact_throws splitIntoSets_sizes(8, [1.1]) # Relative sizes do not sum up to 1.
-  #
-  #   tses = gen_tses(52, 2000, 8)
-  #   tses_100 = splitIntoSets(tses, [1.])
-  #   @fact length(tses_100) --> 1
-  #   @fact length(tses_100[1]) --> 8
-  #   tses_80_20 = splitIntoSets(tses, [.8, .2])
-  #   @fact length(tses_80_20) --> 2
-  #   @fact length(tses_80_20[1]) --> 6
-  #   @fact length(tses_80_20[2]) --> 2
-  # end
-  #
-  # context("t-Student: model from weekly data") do
-  #   cis = computeCI_TStudent(nr1, .9, ci_period=Week(1))
-  #
-  #   @fact length(cis) --> 3
-  #   for i in 1:3 # mean, low, high
-  #     @fact getPeriod(nr1) --> meta(cis[i])
-  #     @fact length(cis[i]) --> 52
-  #     @fact sum(values(cis[i]) .< 0.) --> 0
-  #   end
-  #
-  #   @fact sum(values(cis[2]) .> values(cis[1])) --> 0 # low < mean
-  #   @fact sum(values(cis[2]) .> values(cis[3])) --> 0 # low < high
-  #   @fact sum(values(cis[1]) .> values(cis[3])) --> 0 # mean < high
-  # end
+  context("Utilities: split an array into random subsets") do
+    @fact ReservoirManagement.splitIntoSets_sizes(8, [1.]) --> [8]
+    @fact ReservoirManagement.splitIntoSets_sizes(8, [.8, .2]) --> [6, 2]
+    @fact_throws splitIntoSets_sizes(8, [1.1]) # Relative sizes do not sum up to 1.
+
+    tses = gen_tses(52, 2000, 8)
+    tses_100 = splitIntoSets(tses, [1.])
+    @fact length(tses_100) --> 1
+    @fact length(tses_100[1]) --> 8
+    tses_80_20 = splitIntoSets(tses, [.8, .2])
+    @fact length(tses_80_20) --> 2
+    @fact length(tses_80_20[1]) --> 6
+    @fact length(tses_80_20[2]) --> 2
+  end
+
+  context("t-Student: model from weekly data") do
+    cis = ReservoirManagement.computeCI_TStudent(nr1, .9, ci_period=Week(1))
+
+    @fact length(cis) --> 3
+    for i in 1:3 # mean, low, high
+      @fact getPeriod(nr1) --> meta(cis[i])
+      @fact length(cis[i]) --> 52
+      @fact sum(values(cis[i]) .< 0.) --> 0
+    end
+
+    @fact sum(values(cis[2]) .> values(cis[1])) --> 0 # low < mean
+    @fact sum(values(cis[2]) .> values(cis[3])) --> 0 # low < high
+    @fact sum(values(cis[1]) .> values(cis[3])) --> 0 # mean < high
+  end
   #
   # context("Adam2015: model from weekly data") do
   #   cis = computeCI_Adam2015(nr1, .9)
@@ -84,7 +84,7 @@ facts("Statistical models") do
   # end
 
   context("Adam2015: scenarios from model (low level interface)") do
-    scs = generateScenarios_Adam2015(fit_Adam2015(TSesNR1), Week(1), 2000)
+    scs = ReservoirManagement.generateScenarios_Adam2015(ReservoirManagement.fit_Adam2015(TSesNR1), Week(1), 2000)
     @fact length(scs) --> 2
     dates = scs[1]
     values = scs[2]

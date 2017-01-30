@@ -5,30 +5,30 @@ facts("Scenario generation") do
     @fact _scgen_symbol_from_function(scenarioMerging) --> :Merge
     @fact _scgen_symbol_from_function(scenarioMixing) --> :Mix
 
-    @fact _scgen_function_from_symbol(:Duplicate) --> exactly(scenarioDuplication)
-    @fact _scgen_function_from_symbol(:Concatenate) --> exactly(scenarioConcatenation)
-    @fact _scgen_function_from_symbol(:Merge) --> exactly(scenarioMerging)
-    @fact _scgen_function_from_symbol(:Mix) --> exactly(scenarioMixing)
+    @fact ReservoirManagement._scgen_function_from_symbol(:Duplicate) --> exactly(scenarioDuplication)
+    @fact ReservoirManagement._scgen_function_from_symbol(:Concatenate) --> exactly(scenarioConcatenation)
+    @fact ReservoirManagement._scgen_function_from_symbol(:Merge) --> exactly(scenarioMerging)
+    @fact ReservoirManagement._scgen_function_from_symbol(:Mix) --> exactly(scenarioMixing)
 
-    @fact _scgen_string_from_symbol(:Duplicate) --> "duplicate"
-    @fact _scgen_string_from_symbol(:Concatenate) --> "concatenate"
-    @fact _scgen_string_from_symbol(:Merge) --> "merge"
-    @fact _scgen_string_from_symbol(:Mix) --> "mix"
+    @fact ReservoirManagement._scgen_string_from_symbol(:Duplicate) --> "duplicate"
+    @fact ReservoirManagement._scgen_string_from_symbol(:Concatenate) --> "concatenate"
+    @fact ReservoirManagement._scgen_string_from_symbol(:Merge) --> "merge"
+    @fact ReservoirManagement._scgen_string_from_symbol(:Mix) --> "mix"
 
-    @fact _scgen_string_from_function(scenarioDuplication) --> "duplicate"
-    @fact _scgen_string_from_function(scenarioConcatenation) --> "concatenate"
-    @fact _scgen_string_from_function(scenarioMerging) --> "merge"
-    @fact _scgen_string_from_function(scenarioMixing) --> "mix"
+    @fact ReservoirManagement._scgen_string_from_function(scenarioDuplication) --> "duplicate"
+    @fact ReservoirManagement._scgen_string_from_function(scenarioConcatenation) --> "concatenate"
+    @fact ReservoirManagement._scgen_string_from_function(scenarioMerging) --> "merge"
+    @fact ReservoirManagement._scgen_string_from_function(scenarioMixing) --> "mix"
 
-    @fact _scgen_string_from_any(:Duplicate) --> "duplicate"
-    @fact _scgen_string_from_any(:Concatenate) --> "concatenate"
-    @fact _scgen_string_from_any(:Merge) --> "merge"
-    @fact _scgen_string_from_any(:Mix) --> "mix"
+    @fact ReservoirManagement._scgen_string_from_any(:Duplicate) --> "duplicate"
+    @fact ReservoirManagement._scgen_string_from_any(:Concatenate) --> "concatenate"
+    @fact ReservoirManagement._scgen_string_from_any(:Merge) --> "merge"
+    @fact ReservoirManagement._scgen_string_from_any(:Mix) --> "mix"
 
-    @fact _scgen_string_from_any(scenarioDuplication) --> "duplicate"
-    @fact _scgen_string_from_any(scenarioConcatenation) --> "concatenate"
-    @fact _scgen_string_from_any(scenarioMerging) --> "merge"
-    @fact _scgen_string_from_any(scenarioMixing) --> "mix"
+    @fact ReservoirManagement._scgen_string_from_any(scenarioDuplication) --> "duplicate"
+    @fact ReservoirManagement._scgen_string_from_any(scenarioConcatenation) --> "concatenate"
+    @fact ReservoirManagement._scgen_string_from_any(scenarioMerging) --> "merge"
+    @fact ReservoirManagement._scgen_string_from_any(scenarioMixing) --> "mix"
   end
 
   context("Duplication") do
