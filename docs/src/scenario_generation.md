@@ -12,8 +12,7 @@ The following scenario generation techniques are available by default:
   * `:Duplicate`: each year is duplicated `number` times
   * `:Concatenate`: `number` successive years are concatenated (no scenario is ever used more than once)
   * `:Merge`: `number` successive years are concatenated (every possible combination is returned)
-  * `:Mix`: each output scenario is a combination of `number` scenarios; all possible combinations are returned
-    (some scenarios will contain only copies of one scenario, others consecutive scenarios, etc.)
+  * `:Mix`: each output scenario is a combination of `number` scenarios; all possible combinations are returned (some scenarios will contain only copies of one scenario, others consecutive scenarios, etc.)
 
 For example, if there are three scenarios (`s1`, `s2`, and `s3`) and if `number` is `2`, the outputs will be:
 
@@ -45,4 +44,12 @@ scenarioConcatenation(::Array{TimeSeries.TimeArray{Float64, 1, DateTime, Array{F
 scenarioMerging(::Array{TimeSeries.TimeArray{Float64, 1, DateTime, Array{Float64, 1}}, 1}, ::Int)
 scenarioMixing(::Array{TimeSeries.TimeArray{Float64, 1, DateTime, Array{Float64, 1}}, 1}, ::Int)
 addScenarioGenerationAlgorithm!(::Symbol, ::Function, ::AbstractString)
+```
+
+## Utility functions
+
+```@docs
+scenarioShift(::Array{TimeSeries.TimeArray{Float64, 1, DateTime, Array{Float64, 1}}, 1})
+scenarioShift(::River)
+scenarioShift(::Reservoir)
 ```

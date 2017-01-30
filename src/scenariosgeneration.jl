@@ -146,9 +146,16 @@ addScenarioGenerationAlgorithm!(:Mix,         scenarioMixing,        "mix")
 
 
 scenarioGeneration(r::River, f::Function, number::Int) = copy(r, scenarios=f(r.scenarios, number)) # TODO: Is this useful, shouldn't all user code directly use symbols (no more functions)? Looks like half-baked refactoring.
+
+"""
+Applies a scenario generation algorithm on a river (natural or diverted).
+"""
 scenarioGeneration(r::River, s::Symbol, number::Int) = scenarioGeneration(r, _scgen_function_from_symbol(s), number)
 
-function scenarioGeneration(reservoir::Reservoir, f::Union{Symbol, Function}, number::Int)
+"""
+Applies a scenario generation algorithm on a reservoir (i.e. all its rivers).
+"""
+function scenarioGeneration(reservoir::Reservoir, f::Union{Symbol, Function}, number::Int) # TODO: Remove the Function parameter?
   newRivers = NaturalRiver[scenarioGeneration(r, f, number) for r in reservoir.rivers_in]
   newDivertedRivers = DivertedRiver[scenarioGeneration(r, f, number) for r in reservoir.rivers_diverted]
 
@@ -174,7 +181,15 @@ scenarioMixing(r::River, number::Int) = scenarioGeneration(r, :Mix, number)
 
 
 
+"""
+Keeps a series of indices for each of the given time series:
 
+  * `firstKept`: keep elements starting at this index
+  * `length`: keep this number of elements
+  * `lastKept`: keep elements up to this index
+
+Exactly two of these three parameters must be provided.
+"""
 function scenarioShift(TS::Array{TimeSeries.TimeArray{Float64, 1, DateTime, Array{Float64, 1}}, 1}; firstKept::Int=-1, length::Int=-1, lastKept::Int=-1)
   if firstKept * length * lastKept >= 0
     error("At most two parameters can be given amont firstKept, length, lastKept")
@@ -189,8 +204,26 @@ function scenarioShift(TS::Array{TimeSeries.TimeArray{Float64, 1, DateTime, Arra
   end
 end
 
+"""
+Keeps a series of indices for each of the scenarios of the given river:
+
+  * `firstKept`: keep elements starting at this index
+  * `length`: keep this number of elements
+  * `lastKept`: keep elements up to this index
+
+Exactly two of these three parameters must be provided.
+"""
 scenarioShift(r::River; firstKept::Int=-1, length::Int=-1, lastKept::Int=-1) = copy(r, scenarios=scenarioShift(r.scenarios, firstKept=firstKept, length=length, lastKept=lastKept))
 
+"""
+Keeps a series of indices for each of the scenarios of each river for the given reservoir:
+
+  * `firstKept`: keep elements starting at this index
+  * `length`: keep this number of elements
+  * `lastKept`: keep elements up to this index
+
+Exactly two of these three parameters must be provided.
+"""
 function scenarioShift(reservoir::Reservoir; firstKept::Int=-1, length::Int=-1, lastKept::Int=-1)
   newRivers = NaturalRiver[scenarioShift(r, firstKept=firstKept, length=length, lastKept=lastKept) for r in naturalRivers(reservoir)]
   newDivertedRivers = DivertedRiver[scenarioShift(r, firstKept=firstKept, length=length, lastKept=lastKept) for r in divertedRivers(reservoir)]
