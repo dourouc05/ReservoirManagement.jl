@@ -23,7 +23,6 @@ Pkg.checkout("ExtremeValueDistributions", "develop")
 
 ```Julia
 using ReservoirManagement
-using FactCheck
 using SIUnits
 using SIUnits.ShortUnits
 ```

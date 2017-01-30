@@ -114,9 +114,23 @@ end
 
 scenarioGenerationAlgorithms = Dict{Symbol, Tuple{Function, AbstractString}}()
 
+"""
+Registers a scenario generation function. The three arguments are:
+
+  * the symbol that the user will use to call the algorithm (like `:Duplicate` or `:Mix`)
+  * the function that implements the scenario generation algorithm. It must take two arguments:
+
+    * an array of time series (each one has the same duration)
+    * an integer (`number`)
+
+    It returns an array of time series (whose length is `number` times larger than in the input array) with the algorithm applied.
+
+  * the name of the algorithm
+"""
 function addScenarioGenerationAlgorithm!(s::Symbol, f::Function, d::AbstractString)
   scenarioGenerationAlgorithms[s] = (f, d)
 end
+
 _scgen_symbol_from_function(f::Function) = collect(keys(filter((k, v) -> v[1] == f, scenarioGenerationAlgorithms)))[1]
 _scgen_function_from_symbol(s::Symbol) = scenarioGenerationAlgorithms[s][1]
 _scgen_string_from_symbol(s::Symbol) = scenarioGenerationAlgorithms[s][2]
@@ -131,7 +145,7 @@ addScenarioGenerationAlgorithm!(:Mix,         scenarioMixing,        "mix")
 
 
 
-scenarioGeneration(r::River, f::Function, number::Int) = copy(r, scenarios=f(r.scenarios, number))
+scenarioGeneration(r::River, f::Function, number::Int) = copy(r, scenarios=f(r.scenarios, number)) # TODO: Is this useful, shouldn't all user code directly use symbols (no more functions)? Looks like half-baked refactoring.
 scenarioGeneration(r::River, s::Symbol, number::Int) = scenarioGeneration(r, _scgen_function_from_symbol(s), number)
 
 function scenarioGeneration(reservoir::Reservoir, f::Union{Symbol, Function}, number::Int)
