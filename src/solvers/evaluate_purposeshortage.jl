@@ -26,6 +26,8 @@ end
 
 
 
+# TODO: Other shortage indices? E.g. DrinC, RDI, SDI (https://www.researchgate.net/publication/245542402_The_Drought_Indices_Calculator_DrinC)
+
 """
 Computes the shortage index based on the result of a `purposeShortage` analysis (given in `s`),
 for the given `purposes`. This index compares the missing water to meet all purposes with the total need for water,
