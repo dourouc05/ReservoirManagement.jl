@@ -1,5 +1,7 @@
 # ReservoirManagement
 
+[![Project Status: Inactive – The project has reached a stable, usable state but is no longer being actively developed; support/maintenance will be provided as time allows.](http://www.repostatus.org/badges/latest/inactive.svg)](http://www.repostatus.org/#inactive) [![The MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](http://opensource.org/licenses/MIT)
+
 ReservoirManagement.jl is a [Julia](http://julialang.org/) package that can be used to manage reservoirs (such as dams) using mathematical optimisation tools. Its design should allow easy extensibility for new use cases and kinds of management. For now, it focuses on determining rule curves, based on inflow to the reservoir and purpose needs. 
 
 ## Installation
